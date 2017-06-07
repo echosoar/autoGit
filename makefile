@@ -4,7 +4,9 @@ BUILDID=$(shell date +%Y%m%d-%H:%M:%S)
 
 all: commit
 
-commit:
+add:
 	git add --all
+
+commit: add
 	git commit -m 'Auto commit at $(BUILDID) by echosoar/autoGit'
 
