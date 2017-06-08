@@ -5,11 +5,18 @@ NOWBRANCH=$(shell git rev-parse --abbrev-ref HEAD)
 
 all: push
 
-add:
-	git add --all
+autoGit:
+	@echo AutoGit by echosoar
+
+add: autoGit
+	@git add --all
+	@echo add success
 
 commit: add
-	git commit -m 'Auto commit at $(BUILDID) by echosoar/autoGit'
+	@git commit -m 'Auto commit at $(BUILDID) by echosoar/autoGit'
+	@echo commit success
 
 push: commit
-	git push origin ${NOWBRANCH}
+	@git push origin ${NOWBRANCH}
+	@echo push ${NOWBRANCH} success
+
