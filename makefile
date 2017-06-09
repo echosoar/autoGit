@@ -1,8 +1,8 @@
-# AutoGit
+# GMF
 # @author:echosoar
 # @site: https://github.com/echosoar/autoGit
 
-.PHONY: all commit
+.PHONY: all ci ad ps npmbuild
 
 BUILDID = $(shell date +%Y%m%d-%H:%M:%S)
 NOWBRANCH = $(shell git rev-parse --abbrev-ref HEAD)
@@ -11,7 +11,7 @@ NPMFILE = ./package.json
 all: ps
 
 autoGit:
-	@echo AutoGit by echosoar
+	@echo GMF by echosoar
 
 # check can execute orders npm run build
 npmbuild:
@@ -29,7 +29,7 @@ ad: autoGit npmbuild
 
 # git commit
 ci: ad
-	@git commit -m 'Auto commit at $(BUILDID) by echosoar/autoGit'
+	@git commit -m '🚀 commit at $(BUILDID) by echosoar/gmf'
 
 # git push
 ps: ci
