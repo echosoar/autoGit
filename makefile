@@ -4,7 +4,7 @@
 
 .PHONY: all ci ad ps npmbuild
 
-BUILDID = $(shell date +%Y-%m-%d %H:%M:%S)
+BUILDID = $(shell date +%Y/%m/%d-%H:%M:%S)
 NOWBRANCH = $(shell git rev-parse --abbrev-ref HEAD)
 NPMFILE = ./package.json
 
