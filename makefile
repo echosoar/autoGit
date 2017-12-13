@@ -2,7 +2,7 @@
 # @author:echosoar
 # @site: https://github.com/echosoar/autoGit
 
-.PHONY: all ci ad ps npmbuild
+.PHONY: all ci ad ps npmbuild build
 
 BUILDID = $(shell date +%Y/%m/%d-%H:%M:%S)
 NOWBRANCH = $(shell git rev-parse --abbrev-ref HEAD)
@@ -29,10 +29,12 @@ ad: autoGit npmbuild
 
 # git commit
 ci: ad
-	@git commit -m '🚀 commit at $(BUILDID) by echosoar/gmf'
+	@git commit -m 'commit at $(BUILDID) by echosoar/gmf'
 
 # git push
 ps: ci
 	@git push origin ${NOWBRANCH}
 	@echo success
 
+build: npmbuild
+	@echo build success
