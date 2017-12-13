@@ -3,6 +3,7 @@
 # @site: https://github.com/echosoar/autoGit
 
 .PHONY: all ci ad ps npmbuild build
+.IGNORE: init
 
 BUILDID = $(shell date +%Y/%m/%d-%H:%M:%S)
 NOWBRANCH = $(shell git rev-parse --abbrev-ref HEAD)
@@ -25,16 +26,27 @@ endif
 
 # git add
 ad: autoGit npmbuild
-	@git add --all
+	git add --all
 
 # git commit
 ci: ad
-	@git commit -m 'commit at $(BUILDID) by echosoar/gmf'
+	git commit -m 'commit at $(BUILDID) by echosoar/gmf'
 
 # git push
 ps: ci
-	@git push origin ${NOWBRANCH}
-	@echo success
+	git push origin ${NOWBRANCH}
 
 build: npmbuild
-	@echo build success
+
+# 初始化项目，生成src、build、doc、test、libs、demo文件夹和生成.gitignore
+init:
+	@mkdir src build doc test libs demo
+
+# 初始化js项目，生成package.json、src/index.js、demo/index.html、.babelrc、.eslintrc
+initjs: init
+	rm -rf ./scripts
+	rm -f package.json .babelrc .eslintrc
+	npm init
+	mkdir scripts
+
+	
