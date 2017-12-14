@@ -13,6 +13,7 @@ BUILDID = $(shell date +%Y/%m/%d-%H:%M:%S)
 NOWBRANCH = $(shell git rev-parse --abbrev-ref HEAD)
 NPMFILE = ./package.json
 ECHOSOAR = "https://raw.githubusercontent.com/echosoar/"
+CCONF = "$(ECHOSOAR)cconf/master/"
 
 all:
 	make up
@@ -51,9 +52,14 @@ init:
 
 # 初始化js项目，生成package.json、src/index.js、demo/index.html、.babelrc、.eslintrc
 initjs: init
-	rm -rf ./scripts
-	rm -f package.json .babelrc .eslintrc
-	mkdir scripts
+	rm -f package.json .babelrc .eslintrc.js
+	@curl -O $(CCONF)js/package.json
+	@curl -O $(CCONF)js/.babelrc
+	@curl -O $(CCONF)js/.eslintrc.js
+	@curl -O $(CCONF)js/webpack.config.js
+	@curl -O $(CCONF)js/.gitignore
+	@curl -o ./demo/index.html $(CCONF)js/demo.html
+	touch ./src/index.js
 
 # update makefile
 up:
