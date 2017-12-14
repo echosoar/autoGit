@@ -54,6 +54,6 @@ initjs: init
 
 # update makefile
 up:
-	curl -o makefile https://raw.githubusercontent.com/echosoar/gmf/master/makefile
+	@curl -o makefile https://raw.githubusercontent.com/echosoar/gmf/master/makefile
 
 	
