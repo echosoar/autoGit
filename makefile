@@ -25,25 +25,25 @@ autoGit:
 
 # check can execute orders npm run build
 npmbuild:
-ifeq ($(shell test -e $(NPMFILE) && echo -n yes), yes)
-ifeq ("$(shell grep scripts $(NPMFILE))", "scripts")
-ifeq ("$(shell grep build $(NPMFILE))", "build")
-		npm run build
+ifeq ("$(shell test -e $(NPMFILE) && echo exists)", "exists")
+ifeq ($(shell grep -l scripts $(NPMFILE)), $(NPMFILE))
+ifeq ($(shell grep -l build $(NPMFILE)), $(NPMFILE))
+		@npm run build
 endif
 endif
 endif
 
 # git add
 ad: autoGit npmbuild
-	git add --all
+	@git add --all
 
 # git commit
 ci: ad
-	git commit -m 'commit at $(BUILDID) by echosoar/gmf'
+	@git commit -m 'commit at $(BUILDID) by echosoar/gmf'
 
 # git push
 ps: ci
-	git push origin ${NOWBRANCH}
+	@git push origin ${NOWBRANCH}
 
 build: npmbuild
 
@@ -53,12 +53,12 @@ init:
 
 # 初始化js项目，生成package.json、src/index.js、demo/index.html、.babelrc、.eslintrc
 initjs: init
-	rm -f $(JSLIST)
+	@rm -f $(JSLIST)
 	@for url in $(JSLIST);do\
 		curl -O $(CCONF)js/$$url;\
 	done
 	@curl -o ./demo/index.html $(CCONF)js/demo.html
-	touch ./src/index.js
+	@touch ./src/index.js
 
 # update makefile
 up:
