@@ -1,7 +1,8 @@
 # GMF
 # @author:echosoar
 # @site: https://github.com/echosoar/autoGit
-#
+# @version: 0.0.1
+# 
 # The best way to use:
 # curl -o makefile https://raw.githubusercontent.com/echosoar/gmf/master/makefile
 
@@ -13,7 +14,9 @@ NOWBRANCH = $(shell git rev-parse --abbrev-ref HEAD)
 NPMFILE = ./package.json
 ECHOSOAR = "https://raw.githubusercontent.com/echosoar/"
 
-all: ps
+all:
+	make up
+	make ps
 
 autoGit:
 	@echo GMF by echosoar
@@ -21,7 +24,7 @@ autoGit:
 # check can execute orders npm run build
 npmbuild:
 ifeq ($(shell test -e $(NPMFILE) && echo -n yes), yes)
-ifeq ("$(shell grep scripts $(NPMFILE))", "build")
+ifeq ("$(shell grep scripts $(NPMFILE))", "scripts")
 ifeq ("$(shell grep build $(NPMFILE))", "build")
 		npm run build
 endif
