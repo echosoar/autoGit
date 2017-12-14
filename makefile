@@ -54,6 +54,5 @@ initjs: init
 
 # update makefile
 up:
-	@curl -o makefile $(ECHOSOAR)gmf/master/makefile
+	@curl -O $(ECHOSOAR)gmf/master/makefile
 
-	
