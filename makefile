@@ -1,6 +1,9 @@
 # GMF
 # @author:echosoar
 # @site: https://github.com/echosoar/autoGit
+#
+# The best way to use:
+# curl -o makefile https://raw.githubusercontent.com/echosoar/gmf/master/makefile
 
 .PHONY: all ci ad ps npmbuild build
 .IGNORE: init
@@ -8,6 +11,7 @@
 BUILDID = $(shell date +%Y/%m/%d-%H:%M:%S)
 NOWBRANCH = $(shell git rev-parse --abbrev-ref HEAD)
 NPMFILE = ./package.json
+TEST = ""
 
 all: ps
 
@@ -46,7 +50,10 @@ init:
 initjs: init
 	rm -rf ./scripts
 	rm -f package.json .babelrc .eslintrc
-	npm init
 	mkdir scripts
+
+# update makefile
+up:
+	curl -o makefile https://raw.githubusercontent.com/echosoar/gmf/master/makefile
 
 	
