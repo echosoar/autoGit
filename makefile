@@ -11,7 +11,7 @@
 BUILDID = $(shell date +%Y/%m/%d-%H:%M:%S)
 NOWBRANCH = $(shell git rev-parse --abbrev-ref HEAD)
 NPMFILE = ./package.json
-TEST = ""
+ECHOSOAR = "https://raw.githubusercontent.com/echosoar/"
 
 all: ps
 
@@ -54,6 +54,4 @@ initjs: init
 
 # update makefile
 up:
-	@curl -o makefile https://raw.githubusercontent.com/echosoar/gmf/master/makefile
-
-	
+	@curl -o makefile $(ECHOSOAR)gmf/master/makefile
