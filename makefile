@@ -4,9 +4,9 @@
 # @version: 0.0.1
 # 
 # The best way to use:
-# curl -o makefile https://raw.githubusercontent.com/echosoar/gmf/master/makefile
+# curl -O https://raw.githubusercontent.com/echosoar/gmf/master/makefile
 
-.PHONY: all ci ad ps npmbuild build
+.PHONY: all ci ad ps npmbuild build up init initjs
 .IGNORE: init
 
 BUILDID = $(shell date +%Y/%m/%d-%H:%M:%S)
@@ -63,4 +63,3 @@ initjs: init
 # update makefile
 up:
 	@curl -O $(ECHOSOAR)gmf/master/makefile
-	
