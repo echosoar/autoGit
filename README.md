@@ -27,6 +27,6 @@ make
 4. make init type=preactRollup
 初始化基于preact + rollup的前端开发环境。
 
-更多支持的初始化内容请参阅 CConf https://github.com/echosoar/cconf。
+更多支持的初始化内容请参阅 CConf https://github.com/echosoar/cconf
  
 © GMF by echosoar
