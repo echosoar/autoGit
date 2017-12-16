@@ -20,11 +20,13 @@ make
 ### GMF目前的能力（命令）：
 1. make
 触发make的远程升级、构建、提交和发布一系列流程。
-2. make initjs
-初始化基于es6+的前端开发环境。
-3. make ps
+2. make ps
 一键执行构建、提交和发布（git add、git commit、git push）。
- 
+3. make init type=js
+初始化基于es6+的前端开发环境。
+4. make init type=preactRollup
+初始化基于preact + rollup的前端开发环境。
 
+更多支持的初始化内容请参阅 CConf https://github.com/echosoar/cconf。
  
 © GMF by echosoar
