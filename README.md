@@ -10,7 +10,7 @@ GMF基于makefile，提供了项目初期开发环境的初始化（譬如ES6、
 # 首先将GMF的makefile文件放入你的项目目录中
 curl -O https://raw.githubusercontent.com/echosoar/gmf/master/makefile
 # 然后执行 
-make initjs
+make init type=js
 # 你就会发现项目目录、webpack、babel、eslint等等都已经生成并且配置OK了
 
 # 项目开发完成后，执行
