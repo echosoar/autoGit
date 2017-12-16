@@ -14,7 +14,9 @@ NOWBRANCH = $(shell git rev-parse --abbrev-ref HEAD)
 NPMFILE = ./package.json
 ECHOSOAR = "https://raw.githubusercontent.com/echosoar/"
 CCONF = "$(ECHOSOAR)cconf/master/"
-JSLIST = package.json .babelrc .eslintrc.js webpack.config.js .gitignore
+
+## init type
+type = none
 
 all:
 	make up
@@ -47,19 +49,27 @@ ps: ci
 
 build: npmbuild
 
-# 初始化项目，生成src、build、doc、test、libs、demo文件夹和生成.gitignore
-init:
-	@mkdir src build doc test libs demo
-
-# 初始化js项目，生成package.json、src/index.js、demo/index.html、.babelrc、.eslintrc
-initjs: init
-	@rm -f $(JSLIST)
-	@for url in $(JSLIST);do\
-		curl -O $(CCONF)js/$$url;\
+# init project command：make init type=js
+# Please refer to https://github.com/echosoar/cconf for all type types currently supported
+init: 
+ifeq ($(type), none)
+	@echo type is not input
+else
+ifeq ($(shell curl -s "$(CCONF)$(type)/.cconf"), exists)
+	@echo init $(type) start...
+	@for dirName in $(shell curl -s "$(CCONF)$(type)/.cconfDir");do\
+		mkdir -p $$dirName;\
 	done
-	@curl -o ./demo/index.html $(CCONF)js/demo.html
-	@touch ./src/index.js
+	@for fileName in $(shell curl -s "$(CCONF)$(type)/.cconfFile");do\
+		curl -s -o ./$$fileName $(CCONF)$(type)/$$fileName;\
+	done
+	@echo init $(type) complete!
+else
+	@echo type is not support
+endif
+endif
 
 # update makefile
 up:
-	@curl -O $(ECHOSOAR)gmf/master/makefile
+	@curl -s -O $(ECHOSOAR)gmf/master/makefile
+	@echo GMF is the latest version.
