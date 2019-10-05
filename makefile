@@ -1,7 +1,7 @@
 # GMF
 # @author:echosoar
-# @site: https://github.com/echosoar/autoGit
-# @version: 0.0.1
+# @site: https://github.com/echosoar/gmf
+# @version: 0.0.2
 # 
 # The best way to use:
 # curl -O https://raw.githubusercontent.com/echosoar/gmf/master/makefile
@@ -9,7 +9,6 @@
 .PHONY: all ci ad ps npmbuild build up init initjs
 .IGNORE: init
 
-BUILDID = $(shell date +%Y/%m/%d-%H:%M:%S)
 NOWBRANCH = $(shell git rev-parse --abbrev-ref HEAD)
 NPMFILE = ./package.json
 ECHOSOAR = "https://raw.githubusercontent.com/echosoar/"
@@ -41,7 +40,7 @@ ad: autoGit npmbuild
 
 # git commit
 ci: ad
-	@git commit -m 'commit at $(BUILDID) by echosoar/gmf'
+	@if [ "${cm}" = "" ]; then exit 'need input commit message by cm="xxx"'; else git commit -m '${cm}'; fi
 
 # git push
 ps: ci
